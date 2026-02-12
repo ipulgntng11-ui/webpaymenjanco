@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Payment Gateway - DANA & GoPay | QRIS Otomatis</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHwSURBVHgB7VbBcYMwEDRKZkgH5IIC0gGmg5QAKSAlhJTgUoJLCTiUDkx3kA5MCc6PUYaVUMBkMIn8Zt5oJM7sSNrd0y4jYTAYDAaDwfD/YBgMhlhDZ+yU4V0sAfb4DiyMqL5bD/RAn/15G0sAT3yDXPTpAQ+E/GrHs0cRSHg9yJ6ge7cHnEQsn4WPD3wCcgEC5BZCFpKz2wMEx3zDMui5HZC/4rOMBA8YjD5LgJN70W+1Ql7EQiM+USvwt4f3RArwoH2FS8AlYSI5lE2AQd4I+ZzMAhS/TgJCflASeGc4J2J2mATuLG4ZuyJ8i1lAYszCb/aJIO/pRrKAvv9AqT9rNlGs8RO/JtIVcA74ZiyY6c+XWv3NvQNyjp4pCYD5b3tAsmfuBCv8uXOiPCBBnTHru3ABiZm3iBKYN9gCgF0mIN71T9gvwK0cC4hE3eUuGAi47QFq7g3M0t+p8FcI0bYJwB8qHvSYL3Kn+wT8POf9B8CVWNr5l1vwdE59hQ/CKZ/xHv8hFqBLoN6XbX+AD+AhxwP7w1wPqAUnMqcp8jRrz24/I8BKzUwD1B5Vt9+HkuAD7y4v2z5l3R9O0pmgh8W8JyPawv6PcBpQ2hOCw0Pj8tKM/w7lz8FgMBgMhv8C37TbP0J4cW7LAAAAAElFTkSuQmCC">
+  <meta name="description" content="Pembayaran instant via QRIS Otomatis & Transfer Manual DANA/GoPay. Nominal bebas Rp1.000 - Rp10.000.000">
+  <meta name="theme-color" content="#0a1a2f">
+</head>
+<body>
+  <div class="container">
+    <!-- ============= HEADER ============= -->
+    <div class="header">
+      <div class="logo">
+        <i class="fas fa-bolt"></i>
+        <span>PAY<span class="highlight">FAST</span></span>
+      </div>
+      <div class="badge">
+        <i class="fas fa-shield-alt"></i> Aman & Terpercaya
+      </div>
+    </div>
+
+    <!-- ============= HERO SECTION ============= -->
+    <div class="hero">
+      <h1>Pembayaran <span class="gradient-text">Instant</span></h1>
+      <p>Scan QRIS otomatis atau transfer manual ke DANA/GoPay</p>
+      
+      <!-- INFO NOMINAL BEBAS -->
+      <div class="nominal-badge">
+        <span class="nominal-badge-content">
+          <i class="fas fa-coins" style="color: #ffd700;"></i>
+          <span style="font-weight: 700;">Rp1.000 - Rp10.000.000</span>
+          <span class="nominal-badge-tag">
+            <i class="fas fa-check-circle"></i> BEBAS NOMINAL
+          </span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ============= INPUT NOMINAL CARD ============= -->
+    <div class="card glass">
+      <div class="card-header">
+        <i class="fas fa-wallet"></i>
+        <h2>Masukkan Nominal</h2>
+      </div>
+      <div class="input-group">
+        <span class="prefix">Rp</span>
+        <input type="text" id="amount" placeholder="0" inputmode="numeric" autocomplete="off">
+      </div>
+      <div class="quick-amount">
+        <button class="chip" data-amount="10000">10K</button>
+        <button class="chip" data-amount="20000">20K</button>
+        <button class="chip" data-amount="50000">50K</button>
+        <button class="chip" data-amount="100000">100K</button>
+        <button class="chip" data-amount="250000">250K</button>
+        <button class="chip" data-amount="500000">500K</button>
+      </div>
+    </div>
+
+    <!-- ============= PAYMENT METHOD CARD ============= -->
+    <div class="card glass">
+      <div class="card-header">
+        <i class="fas fa-credit-card"></i>
+        <h2>Metode Pembayaran</h2>
+      </div>
+      
+      <!-- Tabs -->
+      <div class="method-tabs">
+        <button class="method-tab active" data-method="qris">
+          <i class="fas fa-qrcode"></i>
+          QRIS Otomatis
+        </button>
+        <button class="method-tab" data-method="manual">
+          <i class="fas fa-hand-holding-usd"></i>
+          Transfer Manual
+        </button>
+      </div>
+
+      <!-- ============= QRIS OTOMATIS SECTION ============= -->
+      <div id="qris-section" class="method-section active">
+        <div class="info-banner">
+          <i class="fas fa-info-circle"></i>
+          <span>Pembayaran otomatis via QRIS Pakasir, status terupdate realtime</span>
+        </div>
+        
+        <!-- QRIS Payment Area (Hidden by default) -->
+        <div id="qris-payment-area" style="display: none;">
+          <div class="qris-container">
+            <div class="merchant-badge">
+              <i class="fas fa-store"></i> 
+              <span id="merchant-name">QRIS Payment</span>
+            </div>
+            <div class="qris-wrapper">
+              <div id="qrcode-container">
+                <img id="qris-image" src="" alt="QRIS Code">
+              </div>
+              <div id="loading-qr" class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Memuat QRIS...</p>
+              </div>
+            </div>
+            <div class="amount-big" id="qris-amount">Rp 0</div>
+            <div class="order-id">
+              <span>ID: <span id="order-id">-</span></span>
+              <button id="copy-order" class="copy-btn" title="Salin Order ID">
+                <i class="far fa-copy"></i>
+              </button>
+            </div>
+            <div class="expiry-timer" id="expiry-timer">
+              <i class="far fa-clock"></i>
+              <span>Kadaluarsa dalam <span id="timer">15:00</span></span>
+            </div>
+            <button id="check-payment-btn" class="btn btn-primary btn-block">
+              <i class="fas fa-sync-alt"></i>
+              Cek Status Pembayaran
+            </button>
+          </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button id="generate-qris" class="btn btn-primary btn-block">
+          <i class="fas fa-qrcode"></i>
+          Generate QRIS
+        </button>
+      </div>
+
+      <!-- ============= TRANSFER MANUAL SECTION ============= -->
+      <div id="manual-section" class="method-section">
+        <div class="manual-payment">
+          <!-- DANA -->
+          <div class="payment-option">
+            <div class="payment-icon dana">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="payment-detail">
+              <h3>DANA</h3>
+              <div class="phone-number">085713933912</div>
+              <span class="badge-owner">a/n KINZXXOFFCIAL</span>
+            </div>
+            <button class="copy-number" data-number="085713933912">
+              <i class="far fa-copy"></i> Salin
+            </button>
+          </div>
+
+          <!-- GoPay -->
+          <div class="payment-option">
+            <div class="payment-icon gopay">
+              <i class="fas fa-wallet"></i>
+            </div>
+            <div class="payment-detail">
+              <h3>GoPay</h3>
+              <div class="phone-number">085713933912</div>
+              <span class="badge-owner">a/n KINZXXOFFCIAL</span>
+            </div>
+            <button class="copy-number" data-number="085713933912">
+              <i class="far fa-copy"></i> Salin
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============= PAYMENT STATUS CARD ============= -->
+    <div id="payment-status-card" class="card glass" style="display: none;">
+      <div class="card-header">
+        <i class="fas fa-credit-card"></i>
+        <h2>Status Pembayaran</h2>
+      </div>
+      <div id="payment-status-content">
+        <!-- Dynamic content -->
+      </div>
+    </div>
+
+    <!-- ============= KONFIRMASI PEMBAYARAN ============= -->
+    <div class="card glass">
+      <div class="card-header">
+        <i class="fas fa-headset"></i>
+        <h2>Konfirmasi Pembayaran</h2>
+      </div>
+      <div class="support-buttons">
+        <a href="https://t.me/kinzxxoffcial" target="_blank" class="support-btn telegram">
+          <i class="fab fa-telegram-plane"></i>
+          @kinzxxoffcial
+        </a>
+        <a href="https://wa.me/62895379234782" target="_blank" class="support-btn whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          0895379234782
+        </a>
+      </div>
+      <div class="instruction">
+        <i class="fas fa-info-circle"></i>
+        <p>Setelah transfer manual / QRIS sukses, chat ke Telegram atau WhatsApp untuk konfirmasi</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============= TOAST NOTIFICATION ============= -->
+  <div id="toast" class="toast">
+    <div class="toast-content">
+      <i class="fas fa-check-circle"></i>
+      <span id="toast-message">Berhasil disalin!</span>
+    </div>
+  </div>
+
+  <!-- ============= MODAL SUKSES ============= -->
+  <div id="modal" class="modal">
+    <div class="modal-content glass">
+      <div class="modal-header">
+        <h3><i class="fas fa-check-circle" style="color: #4CAF50;"></i> Pembayaran Berhasil!</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <p style="margin-bottom: 20px; font-size: 18px;">Silakan konfirmasi ke:</p>
+        <div class="support-links" style="display: flex; gap: 12px; justify-content: center;">
+          <a href="https://t.me/kinzxxoffcial" target="_blank" class="support-btn telegram" style="padding: 12px 20px;">
+            <i class="fab fa-telegram-plane"></i> @kinzxxoffcial
+          </a>
+          <a href="https://wa.me/62895379234782" target="_blank" class="support-btn whatsapp" style="padding: 12px 20px;">
+            <i class="fab fa-whatsapp"></i> 0895379234782
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="modal-close-btn">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
